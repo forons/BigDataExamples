@@ -18,10 +18,11 @@ import org.apache.spark.api.java.function.PairFunction;
 public class JavaBasicJoinCsv {
 
 	public static class ParseLine implements PairFunction<String, Integer, String[]> {
+
 		/**
 		 * 
 		 */
-		private static final long serialVersionUID = 1L;
+		private static final long serialVersionUID = 3265286490593396610L;
 
 		public Tuple2<Integer, String[]> call(String line) throws Exception {
 			CSVReader reader = new CSVReader(new StringReader(line));
@@ -41,7 +42,6 @@ public class JavaBasicJoinCsv {
 		String csv2 = args[2];
 		JavaBasicJoinCsv jsv = new JavaBasicJoinCsv();
 		jsv.run(master, csv1, csv2);
-
 	}
 
 	public void run(String master, String csv1, String csv2) throws Exception {

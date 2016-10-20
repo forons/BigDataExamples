@@ -24,7 +24,6 @@ public class JavaAnagramms {
 		JavaPairRDD<String, String> map = flat.mapToPair(x -> new Tuple2<String, String>(orderLexicographically(x), x));
 
 		JavaPairRDD<String, String> reduce = map.reduceByKey((x, y) -> x + "~" + y);
-		// .reduceByKey((x, y) -> x.equals(y) ? x : (x + "~" + y));
 
 		System.out.println(reduce.collect());
 
@@ -37,5 +36,4 @@ public class JavaAnagramms {
 		Arrays.sort(cArr);
 		return new String(cArr);
 	}
-
 }

@@ -1,6 +1,3 @@
-/**
- * Load some tweets stored as JSON data and explore them.
- */
 package it.unitn.spark.examples;
 
 import java.util.ArrayList;
@@ -15,7 +12,11 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.api.java.UDF1;
 import org.apache.spark.sql.types.DataTypes;
 
+/**
+ * Load some tweets stored as JSON data and explore them.
+ */
 public class JavaSparkSQLTwitter {
+
 	@SuppressWarnings({ "deprecation", "serial" })
 	public static void main(String[] args) {
 		String inputFile = args[0];

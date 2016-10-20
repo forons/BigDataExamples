@@ -16,6 +16,7 @@ package it.unitn.spark.examples;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import scala.Tuple2;
 
 import com.google.common.collect.Iterables;
@@ -42,7 +43,6 @@ import java.util.regex.Pattern;
  * conventional use, please refer to org.apache.spark.graphx.lib.PageRank
  */
 @SuppressWarnings("serial")
-
 public final class JavaPageRank {
 	private static final Pattern SPACES = Pattern.compile("\\s+");
 
