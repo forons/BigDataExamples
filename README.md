@@ -4,5 +4,7 @@ In this repository are contained some examples for the Big Data and Social Analy
 The official page of the professor is http://disi.unitn.it/~velgias/
 
 If you have any question, send an email to:
-daniele (dot) foroni (at) unitn (dot) it
-paolo (dot) sottovia (at) unitn (dot) it
+
+daniele.foroni@unitn.it
+
+paolo.sottovia@unitn.it
