@@ -1,4 +1,4 @@
-package it.unitn.spark.examples;
+package it.unitn.spark.examples.bigdata2016;
 
 import org.apache.spark.api.java.JavaSparkContext;
 
@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 import org.apache.spark.SparkConf;
 
-public class JavaWordCount {
+public class WordCount {
 	public static void main(String[] args) {
 		SparkConf conf = new SparkConf().setAppName("JavaWordCount").setMaster("local[2]");
 		JavaSparkContext sc = new JavaSparkContext(conf);

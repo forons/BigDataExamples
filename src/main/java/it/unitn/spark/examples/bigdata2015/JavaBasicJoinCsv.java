@@ -1,4 +1,4 @@
-package it.unitn.spark.examples;
+package it.unitn.spark.examples.bigdata2015;
 
 /**
  * Illustrates joining two csv files

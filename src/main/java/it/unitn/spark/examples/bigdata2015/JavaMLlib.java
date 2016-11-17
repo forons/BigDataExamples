@@ -1,4 +1,4 @@
-package it.unitn.spark.examples;
+package it.unitn.spark.examples.bigdata2015;
 
 import java.util.Arrays;
 
@@ -50,6 +50,7 @@ public final class JavaMLlib {
 								// iterative algorithm.
 
 		// Create a Logistic Regression learner which uses the LBFGS optimizer.
+		@SuppressWarnings("deprecation")
 		LogisticRegressionWithSGD lrLearner = new LogisticRegressionWithSGD();
 		// Run the actual learning algorithm on the training data.
 		LogisticRegressionModel model = lrLearner.run(trainingData.rdd());

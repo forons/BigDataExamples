@@ -1,4 +1,4 @@
-package it.unitn.spark.examples;
+package it.unitn.spark.examples.bigdata2016;
 
 import java.util.Arrays;
 import java.util.Iterator;

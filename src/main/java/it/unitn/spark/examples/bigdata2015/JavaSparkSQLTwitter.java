@@ -1,4 +1,4 @@
-package it.unitn.spark.examples;
+package it.unitn.spark.examples.bigdata2015;
 
 import java.util.ArrayList;
 import java.util.List;
