@@ -21,8 +21,8 @@ public class WordsOccurrences {
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		JavaRDD<String> lines = sc.textFile("files/inferno.txt");
-		JavaPairRDD<String, Integer> pairWithLambda = wordCountWithLambda(lines);
-		System.out.println(pairWithLambda.collect());
+//		JavaPairRDD<String, Integer> pairWithLambda = wordCountWithLambda(lines);
+//		System.out.println(pairWithLambda.collect());
 
 		JavaPairRDD<String, Integer> pairWithoutLambda = wordCountWithoutLambda(lines);
 		System.out.println(pairWithoutLambda.collect());
@@ -40,7 +40,7 @@ public class WordsOccurrences {
 		JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
 			@Override
 			public Iterator<String> call(String line) {
-				return Arrays.asList(line.toLowerCase().replaceAll("[^A-Za-z ]", "").split(" ")).iterator();
+				return Arrays.asList(line.toLowerCase().replaceAll("[^a-z ]", "").split(" ")).iterator();
 			}
 		});
 		JavaPairRDD<String, Integer> pairs = words.mapToPair(new PairFunction<String, String, Integer>() {
