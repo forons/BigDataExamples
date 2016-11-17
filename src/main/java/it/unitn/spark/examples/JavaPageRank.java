@@ -31,6 +31,7 @@ import org.apache.spark.api.java.function.PairFlatMapFunction;
 import org.apache.spark.api.java.function.PairFunction;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -48,8 +49,7 @@ public final class JavaPageRank {
 
 	static void showWarning() {
 		String warning = "WARN: This is a naive implementation of PageRank " + "and is given as an example! \n"
-				+ "Please use the PageRank implementation found in "
-				+ "org.apache.spark.graphx.lib.PageRank for more conventional use.";
+				+ "Please use the PageRank implementation found in " + "org.apache.spark.graphx.lib.PageRank for more conventional use.";
 		System.err.println(warning);
 	}
 
@@ -100,13 +100,13 @@ public final class JavaPageRank {
 			// Calculates URL contributions to the rank of other URLs.
 			JavaPairRDD<String, Double> contribs = links.join(ranks).values()
 					.flatMapToPair(new PairFlatMapFunction<Tuple2<Iterable<String>, Double>, String, Double>() {
-						public Iterable<Tuple2<String, Double>> call(Tuple2<Iterable<String>, Double> s) {
+						public Iterator<Tuple2<String, Double>> call(Tuple2<Iterable<String>, Double> s) {
 							int urlCount = Iterables.size(s._1);
 							List<Tuple2<String, Double>> results = new ArrayList<Tuple2<String, Double>>();
 							for (String n : s._1) {
 								results.add(new Tuple2<String, Double>(n, s._2() / urlCount));
 							}
-							return results;
+							return results.iterator();
 						}
 					});
 

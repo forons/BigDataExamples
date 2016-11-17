@@ -20,7 +20,7 @@ public class JavaAnagramms {
 		int totalLength = lineLengths.reduce((a, b) -> a + b);
 		System.out.println("TOTAL: " + totalLength);
 
-		JavaRDD<String> flat = input.flatMap(x -> Arrays.asList(x.replaceAll("[^A-Za-z ]", "").split(" ")));
+		JavaRDD<String> flat = input.flatMap(x -> Arrays.asList(x.replaceAll("[^A-Za-z ]", "").split(" ")).iterator());
 		JavaPairRDD<String, String> map = flat.mapToPair(x -> new Tuple2<String, String>(orderLexicographically(x), x));
 
 		JavaPairRDD<String, String> reduce = map.reduceByKey((x, y) -> x + "~" + y);
