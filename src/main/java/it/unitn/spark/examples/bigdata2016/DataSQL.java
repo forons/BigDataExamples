@@ -30,6 +30,11 @@ public class DataSQL {
 		Dataset<Row> sqlDF = spark.sql("SELECT * FROM people");
 		sqlDF.show();
 
+		// Encoders for most common types are provided in class Encoders
+		Dataset<Integer> primitiveDS = spark.createDataset(Arrays.asList(1, 2, 3), Encoders.INT());
+		Dataset<Integer> transformedDS = primitiveDS.map(x -> x + 1, Encoders.INT());
+		transformedDS.collect(); // Returns [2, 3, 4]
+
 		// Create an instance of a Bean class
 		Person person = new Person();
 		person.setName("Andy");
@@ -39,11 +44,6 @@ public class DataSQL {
 		Encoder<Person> personEncoder = Encoders.bean(Person.class);
 		Dataset<Person> javaBeanDS = spark.createDataset(Collections.singletonList(person), personEncoder);
 		javaBeanDS.show();
-
-		// Encoders for most common types are provided in class Encoders
-		Dataset<Integer> primitiveDS = spark.createDataset(Arrays.asList(1, 2, 3), Encoders.INT());
-		Dataset<Integer> transformedDS = primitiveDS.map(x -> x + 1, Encoders.INT());
-		transformedDS.collect(); // Returns [2, 3, 4]
 
 		// DataFrames can be converted to a Dataset by providing a class.
 		// Mapping based on name
@@ -57,7 +57,13 @@ public class DataSQL {
 		Dataset<String> teenagerNamesByIndexDF = teenagersDF.map(row -> "Name: " + row.getString(0), Encoders.STRING());
 		teenagerNamesByIndexDF.show();
 
+		// or by field name
 		Dataset<String> teenagerNamesByFieldDF = teenagersDF.map(row -> "Name: " + row.<String> getAs("name"), Encoders.STRING());
 		teenagerNamesByFieldDF.show();
+
+		// Write output to file in csv form (json is also available)
+		// *.parquet is used if any format is given with df.write().save(*path*)
+		peopleDS.select(col("name"), col("age")).write().format("csv").option("header", true).csv("files/outputPeople.csv");
+
 	}
 }
