@@ -64,6 +64,5 @@ public class DataSQL {
 		// Write output to file in csv form (json is also available)
 		// *.parquet is used if any format is given with df.write().save(*path*)
 		peopleDS.select(col("name"), col("age")).write().format("csv").option("header", true).csv("files/outputPeople");
-
 	}
 }
