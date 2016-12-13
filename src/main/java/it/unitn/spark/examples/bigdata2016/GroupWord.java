@@ -4,6 +4,7 @@ import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 
+@SuppressWarnings("unused")
 public class GroupWord {
 	public static void main(String[] args) {
 		SparkConf conf = new SparkConf().setAppName("JavaWordCount").setMaster("local[2]");

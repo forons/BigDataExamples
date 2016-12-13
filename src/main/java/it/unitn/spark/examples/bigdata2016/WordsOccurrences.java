@@ -14,15 +14,17 @@ import org.apache.spark.api.java.function.PairFunction;
 
 import scala.Tuple2;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial", "unused"})
 public class WordsOccurrences {
 	public static void main(String[] args) {
-		SparkConf conf = new SparkConf().setAppName("JavaWordCount").setMaster("local[2]");
+		SparkConf conf = new SparkConf().setAppName("JavaWordCount")
+				.setMaster("local[2]");
 		JavaSparkContext sc = new JavaSparkContext(conf);
 
 		JavaRDD<String> lines = sc.textFile("files/inferno.txt");
-//		JavaPairRDD<String, Integer> pairWithLambda = wordCountWithLambda(lines);
-//		System.out.println(pairWithLambda.collect());
+		// JavaPairRDD<String, Integer> pairWithLambda =
+		// wordCountWithLambda(lines);
+		// System.out.println(pairWithLambda.collect());
 
 		JavaPairRDD<String, Integer> pairWithoutLambda = wordCountWithoutLambda(lines);
 		System.out.println(pairWithoutLambda.collect());
@@ -31,8 +33,12 @@ public class WordsOccurrences {
 	}
 
 	private static JavaPairRDD<String, Integer> wordCountWithLambda(JavaRDD<String> lines) {
-		JavaRDD<String> words = lines.flatMap(line -> Arrays.asList(line.toLowerCase().replaceAll("[^A-Za-z ]", "").split(" ")).iterator());
-		JavaPairRDD<String, Integer> pairs = words.mapToPair(x -> new Tuple2<String, Integer>(x, 1)).reduceByKey((x, y) -> x + y);
+		JavaRDD<String> words = lines.flatMap(line -> Arrays.asList(line.toLowerCase()
+				.replaceAll("[^A-Za-z ]", "")
+				.split(" "))
+				.iterator());
+		JavaPairRDD<String, Integer> pairs = words.mapToPair(x -> new Tuple2<String, Integer>(x, 1))
+				.reduceByKey((x, y) -> x + y);
 		return pairs.filter(x -> x._2 == 5 ? true : false);
 	}
 
@@ -40,7 +46,10 @@ public class WordsOccurrences {
 		JavaRDD<String> words = lines.flatMap(new FlatMapFunction<String, String>() {
 			@Override
 			public Iterator<String> call(String line) {
-				return Arrays.asList(line.toLowerCase().replaceAll("[^a-z ]", "").split(" ")).iterator();
+				return Arrays.asList(line.toLowerCase()
+						.replaceAll("[^a-z ]", "")
+						.split(" "))
+						.iterator();
 			}
 		});
 		JavaPairRDD<String, Integer> pairs = words.mapToPair(new PairFunction<String, String, Integer>() {
@@ -55,14 +64,15 @@ public class WordsOccurrences {
 				return a + b;
 			}
 		});
-		JavaPairRDD<String, Integer> filtered = counts.filter(new Function<Tuple2<String, Integer>, Boolean>() {
-			@Override
-			public Boolean call(Tuple2<String, Integer> tup) throws Exception {
-				if (tup._2 == 5)
-					return true;
-				return false;
-			}
-		});
+		JavaPairRDD<String, Integer> filtered = counts
+				.filter(new Function<Tuple2<String, Integer>, Boolean>() {
+					@Override
+					public Boolean call(Tuple2<String, Integer> tup) throws Exception {
+						if (tup._2 == 5)
+							return true;
+						return false;
+					}
+				});
 
 		return filtered;
 	}
