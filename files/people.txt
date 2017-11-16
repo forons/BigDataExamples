@@ -1,0 +1,4 @@
+Michael,,Rome,Italy
+Andy,30,Milan,Italy
+Justin,19,LosAngeles,California
+Frank,19,NewYork,NewYork

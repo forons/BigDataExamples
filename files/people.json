@@ -1,0 +1,4 @@
+{"name":"Michael", "address":{"city":"Rome", "state":"Italy"}}
+{"name":"Andy", "age":30, "address":{"city":"Milan", "state":"Italy"}}
+{"name":"Justin", "age":19, "address":{"city":"LosAngeles", "state":"California"}}
+{"name":"Frank", "age":19, "address":{"city":"NewYork", "state":"NewYork"}}
