@@ -125,3 +125,4 @@ fabric.properties
 .idea
 *.iml
 dependency-reduced-pom.xml
+files/tweets.json
