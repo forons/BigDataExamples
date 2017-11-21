@@ -38,7 +38,8 @@ public class Anagrams {
     }).reduceByKey((x, y) -> {
       x.addAll(y);
       return x;
-    });
+    }).filter(x -> x._2.size() > 1);
+    
 
     for (Entry<String, List<String>> entry : anagrams.collectAsMap().entrySet()) {
       System.out.println(entry.getKey() + "\t" + entry.getValue());
