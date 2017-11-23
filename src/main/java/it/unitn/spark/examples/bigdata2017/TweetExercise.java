@@ -24,6 +24,8 @@ public class TweetExercise {
 
     tweets.printSchema();
     tweets.show(false);
+    
+//    System.exit(1);
 
     Dataset<Row> countPerUser = tweets.groupBy("user.name").count().sort(col("count").desc())
         .limit(20);
@@ -33,6 +35,8 @@ public class TweetExercise {
     for (Row count : countPerUser.collectAsList()) {
       System.out.println(count.<String>getAs("name") + "\t" + count.getLong(1));
     }
+    
+//    System.exit(1);
 
     Dataset<Row> hashtag = tweets.select(explode(col("entities.hashtags.text")).as("hashtag"))
         .groupBy("hashtag").count().sort(col("count").desc()).limit(20);
@@ -44,6 +48,7 @@ public class TweetExercise {
       System.out.println(count.<String>getAs("hashtag") + "\t" + count.<Long>getAs("count"));
     }
 
+//    System.exit(1);
     Dataset<Row> retweetHashtag = tweets.filter(col("retweeted").equalTo(true))
         .select(explode(col("entities.hashtags.text")).as("hashtag"))
         .groupBy("hashtag").count().sort(col("count").desc()).limit(20);
