@@ -1,4 +1,4 @@
-id,tweet_id,"tweet_timestamp","tweet_text",user_id,"user_name","user_screen_name","user_description","user_created_at",user_default_profile,user_default_image,user_followers_count,user_friends_count,user_statuses_count,retweeted_tweet_id,retweeted_user_id,"retweeted_user_screen_name",retweeted_count,"created_at"
+id,tweet_id,tweet_timestamp,tweet_text,user_id,user_name,user_screen_name,user_description,user_created_at,user_default_profile,user_default_image,user_followers_count,user_friends_count,user_statuses_count,retweeted_tweet_id,retweeted_user_id,retweeted_user_screen_name,retweeted_count,created_at
 91794,524349343353294848,"2014-10-21 00:00:00","@waxpancake
 #GamerGate
 #TheFireRises http://t.co/L2ceaaZs9m",1464599533,"Fox Mulder","FoxAndAHalf","Leader of #GamerGate with the best hair. You could have stopped this, you just had to listen.","2013-05-28 12:41:28",0,0,165,145,3018,NULL,NULL,"",NULL,"2014-10-20 19:00:00"
